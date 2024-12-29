@@ -12,7 +12,7 @@ def test_can_fund_live():
     price_feed = active_network.manifest_named('price_feed')
     coffee = deploy_coffee(price_feed)
     coffee.fund(value= SEND_VALUE)
-    amount_funded = coffee.address_to_amount_funded(boa.env.eoa)
+    amount_funded = coffee.funder_to_funders(boa.env.eoa)
     assert amount_funded == SEND_VALUE
-    coffee.withdrew()
+    coffee.withdraw()
     assert boa.env.get_balance(coffee.address) == 0
